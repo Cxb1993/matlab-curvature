@@ -23,7 +23,7 @@
 %
 
 % number of neighbours
-numNeigh = 10;
+numNeigh = 6;
 
 % surface radius
 radius = 0.5;
@@ -80,15 +80,20 @@ zNormal = vec(4);
 
 kappa = 2.0/radius;
 
+fprintf('Number of neighbours: %i \n',numNeigh);
+fprintf('Surface radius: %g \n',radius);
+fprintf('Height of spherical cap: %g \n',height);
+fprintf('\n');
+
 fprintf('Curvature: \n');
 fprintf('numerical = %d \n',pressure);
 fprintf('analytical = %d \n',kappa);
 fprintf('\n');
 
 fprintf('Normal: \n');
-fprintf('X = %d \n',xNormal);
-fprintf('Y = %d \n',yNormal);
-fprintf('Z = %d \n',zNormal);
+fprintf('X = %f \n',xNormal);
+fprintf('Y = %f \n',yNormal);
+fprintf('Z = %f \n',zNormal);
 
 show(X,Y,Z,IEN);
 
