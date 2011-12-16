@@ -29,8 +29,11 @@ numNeigh = 6;
 radius = 2;
 
 % surface cap height
-height = 0.1*radius;
+height = 0.001*radius;
 
+% curvature calculation style: C++ or MATLAB
+style = 'C++';
+%style = 'MATLAB';
 
 % list of neighbours - the list is taken by pairs of vertices belonging
 % to the triangle element
@@ -71,7 +74,14 @@ Z=zeros(numNeigh+1,1);
 [X,Y,Z,edge] = pointDistrib(radius,height,numNeigh);
 
 vec=[];
-vec = getNormalAndKappa(1,listNeigh,X,Y,Z);
+
+if( style == 'C++' )
+ vec = getNormalAndKappa(1,listNeigh,X,Y,Z);
+ fprintf('    C++ style: Normal and Kappa : \n');
+else
+ vec = getNormalAndKappaMatlab(1,listNeigh,X,Y,Z);
+ fprintf('    MATLAB style: Normal and Kappa : \n');
+end;
 
 pressure = vec(1);
 xNormal = vec(2);
