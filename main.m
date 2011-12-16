@@ -26,10 +26,10 @@
 numNeigh = 6;
 
 % surface radius
-radius = 0.5;
+radius = 2;
 
 % surface cap height
-height = 0.134*radius;
+height = 0.1*radius;
 
 
 % list of neighbours - the list is taken by pairs of vertices belonging
@@ -68,7 +68,7 @@ X=zeros(numNeigh+1,1);
 Y=zeros(numNeigh+1,1);
 Z=zeros(numNeigh+1,1);
 
-[X,Y,Z] = pointDistrib(radius,height,numNeigh);
+[X,Y,Z,edge] = pointDistrib(radius,height,numNeigh);
 
 vec=[];
 vec = getNormalAndKappa(1,listNeigh,X,Y,Z);
@@ -79,21 +79,27 @@ yNormal = vec(3);
 zNormal = vec(4);
 
 kappa = 2.0/radius;
+kappaError = sqrt( (pressure-kappa)*(pressure-kappa)/(pressure*pressure) );
+kappaErrorRel = sqrt( (pressure-kappa)*(pressure-kappa)/(kappa*kappa) );
 
+fprintf('\n');
 fprintf('Number of neighbours: %i \n',numNeigh);
 fprintf('Surface radius: %g \n',radius);
 fprintf('Height of spherical cap: %g \n',height);
+fprintf('Edge size: %g \n',edge);
 fprintf('\n');
 
 fprintf('Curvature: \n');
-fprintf('numerical = %d \n',pressure);
-fprintf('analytical = %d \n',kappa);
+fprintf('   numerical      = %f \n',pressure);
+fprintf('   analytical     = %f \n',kappa);
+fprintf('   error          = %f \n',kappaError);
+fprintf('   relative error = %f \n',kappaErrorRel);
 fprintf('\n');
 
 fprintf('Normal: \n');
-fprintf('X = %f \n',xNormal);
-fprintf('Y = %f \n',yNormal);
-fprintf('Z = %f \n',zNormal);
+fprintf('   X = %f \n',xNormal);
+fprintf('   Y = %f \n',yNormal);
+fprintf('   Z = %f \n',zNormal);
 
-show(X,Y,Z,IEN);
+show(X,Y,Z,IEN,radius);
 

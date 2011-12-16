@@ -1,4 +1,4 @@
-function n = show(X,Y,Z,IEN)
+function n = show(X,Y,Z,IEN,radius)
 %modelo de documentacao a partir de:
 %http://www.engin.umd.umich.edu/CIS/course.des/cis400/matlab/oop.html
 
@@ -17,6 +17,14 @@ vector=[X(:) Y(:) Z(:)];
 trisurf(IEN,X,Y,Z)
 title('kappa')
 
-daspect([1 1 0.5])
+daspect([1 1 1])
 colormap(jet)
 drawnow
+hold on;
+
+circle3x([0,0,radius],radius,1000,':');
+circle3y([0,0,radius],radius,1000,':');
+circle3z([0,0,radius],radius,1000,':');
+
+
+

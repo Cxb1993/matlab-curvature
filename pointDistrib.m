@@ -1,14 +1,15 @@
-function [X,Y,Z] = pointDistrib(radius,height,numNeigh)
+function [X,Y,Z,edge] = pointDistrib(radius,height,numNeigh)
 
 X = zeros(numNeigh,1);
 Y = zeros(numNeigh,1);
 Z = zeros(numNeigh,1);
 
 r_cap = sqrt( 2*height*radius - height*height );
+edge = sqrt( height*height + r_cap*r_cap );
 
 X(1)=0;
 Y(1)=0;
-Z(1)=radius;
+Z(1)=2*radius;
 
 j=2;
 theta=0;
